@@ -125,19 +125,18 @@ if(location.protocol==='file:'||location.hostname.indexOf('github.io')>-1){
 .contents_div .agb-hero-ttl--l2{ transform-origin:50% 46%; }
 .contents_div .agb-hero-ttl--l3{ transform-origin:50% 58%; }
 
-/* 타이틀 옆 반짝이는 별 (레퍼런스 4각 별 + 점) — 위치·크기는 히어로 그림 % 기준 */
+/* 타이틀 옆 반짝이는 별 (레퍼런스 4각 별 + 점, 글로우 없음) — 위치·크기는 히어로 그림 % 기준 */
 .contents_div .agb-hero-star{
   position:absolute; display:block; aspect-ratio:1; pointer-events:none;
   background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath fill='%23fff' d='M50 0C54 36 64 46 100 50C64 54 54 64 50 100C46 64 36 54 0 50C36 46 46 36 50 0Z'/%3E%3C/svg%3E") center / contain no-repeat;
-  filter:drop-shadow(0 0 3px rgba(255,190,90,.75)) drop-shadow(0 0 1px rgba(230,140,40,.5));
   opacity:0;
 }
-.contents_div .agb-hero-star--1{ left:22.8%; top:10.6%; width:6%; }
-.contents_div .agb-hero-star--2{ left:77.6%; top:24.4%; width:5%; }
-.contents_div .agb-hero-star--3{ left:26.2%; top:42.4%; width:3.8%; }
-.contents_div .agb-hero-star--4{ left:66.2%; top:46.4%; width:5%; }
-.contents_div .agb-hero-star--5{ left:85.2%; top:56%; width:2%; border-radius:50%; background:#fff; }   /* 점 */
-.contents_div .agb-hero:not(.is-anim) .agb-hero-star{ opacity:1; }   /* 움직임 없을 때는 그냥 보임 */
+.contents_div .agb-hero-star--1{ left:21.9%; top:9.78%; width:4.8%; }
+.contents_div .agb-hero-star--2{ left:79.3%; top:23.96%; width:4.0%; }
+.contents_div .agb-hero-star--3{ left:25.08%; top:42.83%; width:3.04%; }
+.contents_div .agb-hero-star--4{ left:68.2%; top:46.96%; width:4.0%; }
+.contents_div .agb-hero-star--5{ left:86.6%; top:56.23%; width:1.6%; border-radius:50%; background:#fff; }   /* 점 */
+.contents_div .agb-hero:not(.is-anim) .agb-hero-star{ opacity:1; }
 .contents_div .agb-hero.is-in .agb-hero-star{ animation:agb-twinkle 2.4s ease-in-out infinite both; }
 .contents_div .agb-hero.is-in .agb-hero-star--1{ animation-delay:1.5s; }
 .contents_div .agb-hero.is-in .agb-hero-star--2{ animation-delay:1.9s; }
@@ -335,8 +334,12 @@ if(location.protocol==='file:'||location.hostname.indexOf('github.io')>-1){
 }
 .contents_div .agb-s1-art--house{ left:-3.75cqi; top:13cqi; width:19.825cqi; aspect-ratio:493 / 377; background-size:217.85% auto; background-position:11.36% 58.86%; }
 .contents_div .agb-s1-art--incard{ display:none; }   /* 모바일 전용(카드 안 폰) */
-.contents_div .agb-s1-art--phone{ aspect-ratio:344 / 374; background-size:312.21% auto; background-position:92.47% 62.92%; }
-.contents_div .agb-s1-art--phone:not(.agb-s1-art--incard){ left:82.56cqi; top:23.125cqi; width:18.765cqi; }
+/* 폰 클리핑 영역: 원본에서 폰 + 노란 신호선 3개 전부 (x 708~1052, y 76~490).
+   영역을 넓힌 만큼 translate로 되돌려 화면 속 폰 위치·크기는 그대로 (--pw = 요소 너비) */
+.contents_div .agb-s1-art--phone{ --pw:17.827cqi; width:var(--pw); aspect-ratio:344 / 414; background-size:312.21% auto; background-position:96.99% 55.07%;
+  translate:calc(var(--pw) * 0.09593) calc(var(--pw) * -0.10465); }
+.contents_div .agb-s1-art--incard{ translate:calc(var(--pw) * 0.09593) calc(var(--pw) * 0.01163); }
+.contents_div .agb-s1-art--phone:not(.agb-s1-art--incard){ left:82.56cqi; top:23.125cqi; }
 
 /* 1섹션: 카드 한 장 + 점선 구분 */
 .contents_div .agb-panel{ --c-accent:#7a4710; gap:0; padding:0 calc(var(--card-px) * 1.4); border:2px solid #f0e4c6; border-radius:16px; background:#fff; box-shadow:0 6px 20px rgba(120,90,30,.10); }
@@ -415,6 +418,10 @@ if(location.protocol==='file:'||location.hostname.indexOf('github.io')>-1){
 
 .contents_div .agb-closing{ margin-top:28px; text-align:center; font-size:var(--fs-lead); font-weight:700; line-height:1.6; color:#7a4710; }
 
+/* ===== 스크롤 등장 (히어로 아래 섹션) — 화면에 들어올 때 살짝 떠오르며 나타남 ===== */
+.contents_div .agb-wrap.agb-rv-on .agb-rv{ opacity:0; transform:translateY(18px); transition:opacity .6s ease, transform .6s cubic-bezier(.2,.7,.2,1); }
+.contents_div .agb-wrap.agb-rv-on .agb-rv.is-show{ opacity:1; transform:none; }
+
 /* ===== 푸터 ===== */
 .contents_div .agb-foot{ border-top:2px solid #5a3a14; padding-top:calc(var(--band) - 15px); padding-bottom:calc(var(--band) - 15px); background:var(--c-foot); color:#fff; text-align:center; }
 .contents_div .agb-tags{ display:flex; flex-wrap:wrap; justify-content:center; gap:10px 14px; }
@@ -465,7 +472,7 @@ if(location.protocol==='file:'||location.hostname.indexOf('github.io')>-1){
    601 쪽으로 갈수록 10% 작아지고, 온실은 위로(리드문 위), 폰은 아래로(리드문 아래·카드 모서리) */
 @media (min-width:601px) and (max-width:799px){
   .contents_div .agb-s1-art--house{ width:calc(24.72cqi - 39.2px); top:calc(16.62cqi - 28.96px); left:calc(-3.75cqi - clamp(0px, (800px - 100cqi) * 0.1136, 15px)); }   /* 800→700으로 갈수록 왼쪽으로 최대 15px */
-  .contents_div .agb-s1-art--phone:not(.agb-s1-art--incard){ width:calc(23.38cqi - 36.9px); left:calc(77.92cqi + 37.1px); top:calc(275.7px - 11.34cqi); }
+  .contents_div .agb-s1-art--phone:not(.agb-s1-art--incard){ --pw:calc((23.38cqi - 36.9px) * 0.95); left:calc(77.92cqi + 37.1px); top:calc(275.7px - 11.34cqi); }
 }
 @media (max-width:600px){
   .contents_div .agb-wrap{
@@ -531,7 +538,7 @@ if(location.protocol==='file:'||location.hostname.indexOf('github.io')>-1){
   /* 폰: 섹션 위 대신 카드 안 '신청기간은' 칸 아래 여백에 */
   .contents_div .agb-s1-art--phone:not(.agb-s1-art--incard){ display:none; }
   .contents_div .agb-panel .agb-item--row.agb-item--l{ position:relative; }
-  .contents_div .agb-s1-art--incard{ display:block; z-index:1; left:auto; top:auto; right:0; bottom:-40px; width:60px; }   /* '이곳으로 신청하세요'와 '문의' 사이 점선 위에 걸침 */
+  .contents_div .agb-s1-art--incard{ display:block; z-index:1; left:auto; top:auto; right:0; bottom:-40px; --pw:57px; }   /* '이곳으로 신청하세요'와 '문의' 사이 점선 위에 걸침 */
   /* 2·3섹션 배경 105% 확대 (가운데 기준, 위 맞춤, 넘친 부분 숨김) */
   .contents_div #agb-sec2{ overflow:hidden; }
   .contents_div #agb-sec2 .agb-sec-bg--top{ width:105%; max-width:none; left:50%; transform:translateX(-50%); }
@@ -588,12 +595,12 @@ if(location.protocol==='file:'||location.hostname.indexOf('github.io')>-1){
   /* 1섹션 타이틀 두 줄일 때 온실 1.2배, 18px 아래로 */
   .contents_div .agb-s1-art--house{ width:93.6px; top:calc(var(--band) + var(--kick) - 47px + 18px); }
   /* 카드 안 폰도 1.2배 (60 → 72) */
-  .contents_div .agb-s1-art--incard{ width:72px; bottom:-39px; right:-4px; }
+  .contents_div .agb-s1-art--incard{ --pw:68.4px; bottom:-39px; right:-4px; }
 }
 @media (max-width:420px){
   /* 420 이하: 온실 15px 더 아래, 온실·폰 크기 90% → 5% 더 축소 */
   .contents_div .agb-s1-art--house{ width:77.6px; top:calc(var(--band) + var(--kick) - 47px + 18px + 29px); }
-  .contents_div .agb-s1-art--incard{ width:61.6px; }
+  .contents_div .agb-s1-art--incard{ --pw:58.52px; }
 }
 @media (max-width:362px){
   /* 아주 좁은 폭: 1섹션 라벨이 한 줄로 들어가게 같은 라벨 모두 1px 작게 */
@@ -636,8 +643,6 @@ if(location.protocol==='file:'||location.hostname.indexOf('github.io')>-1){
 </style>
 
 <article class="agb-wrap">
-
-  <!-- TEST: 확인 후 이 줄 삭제 --><div class="jngj-test-spacer" aria-hidden="true" style="height:900px;max-width:800px;margin:auto;display:grid;place-items:center;border:1px solid #cb9;background:linear-gradient(to top right,#0000 calc(50% - 1px),#cb9,#0000 calc(50% + 1px)),linear-gradient(to top left,#0000 calc(50% - 1px),#cb9,#0000 calc(50% + 1px)) #fffdef;font:700 16px sans-serif;color:#7E5E50"><b style="padding:10px 20px;background:#fffdef;border:1px solid #cb9;border-radius:99px">테스트 영역 · 아래로 스크롤 ↓</b></div>
 
   <!-- 히어로 -->
   <section class="agb-hero">
@@ -885,6 +890,27 @@ if(location.protocol==='file:'||location.hostname.indexOf('github.io')>-1){
       else img.addEventListener('error', hide);
     })(bgs[b]);
   }
+
+  /* 스크롤 등장: 히어로 아래 섹션의 덩어리마다 화면에 들어올 때 한 번 */
+  (function(){
+    var wrap = root.querySelector('.agb-wrap');
+    var rm = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(!wrap || rm || !('IntersectionObserver' in window)) return;
+    var sel = '.agb-navsec .agb-nav, .agb-navsec .agb-sum, .agb-sec[id^="agb-sec"] .agb-kick, .agb-sec[id^="agb-sec"] .agb-h2, .agb-sec[id^="agb-sec"] .agb-lead, .agb-sec[id^="agb-sec"] .agb-grid > .agb-item, .agb-panel, .agb-sheet, .agb-closing, .agb-foot .agb-tags';
+    var els = wrap.querySelectorAll(sel), list = [];
+    for(var i = 0; i < els.length; i++){
+      var el = els[i];
+      if(el.closest('.agb-panel, .agb-sheet') && el.classList.contains('agb-item')) continue;   /* 한 장 카드는 카드째로 */
+      el.classList.add('agb-rv'); list.push(el);
+    }
+    wrap.classList.add('agb-rv-on');
+    var rio = new IntersectionObserver(function(es){
+      for(var k = 0; k < es.length; k++){
+        if(es[k].isIntersecting){ es[k].target.classList.add('is-show'); rio.unobserve(es[k].target); }
+      }
+    }, { threshold:0.15 });
+    for(var j = 0; j < list.length; j++) rio.observe(list[j]);
+  })();
 
   var btns = root.querySelectorAll('.agb-nav-btn');
   if(!btns.length) return;
