@@ -569,7 +569,7 @@ if(location.protocol==='file:'||location.hostname.indexOf('github.io')>-1){
   /* 윗줄 오른쪽 칸(신청 기간): 위 점선 없음, 세로 점선은 카드 위에서 가로 점선 좌우 여백만큼 띄워 시작 → 가로 점선까지 */
   .contents_div .agb-panel > .agb-item--r:not(.agb-item--row){ border-top:0; }
   .contents_div .agb-panel > .agb-item--r:not(.agb-item--row)::before{
-    content:''; position:absolute; left:0; top:calc(var(--card-px) * 1.4); bottom:0; border-left:1.5px dashed #e3cd98;
+    content:''; position:absolute; z-index:1; left:-1px; top:calc(var(--card-px) * 1.4); bottom:0; width:0; border-left:2px dashed #e3cd98 !important;
   }
   .contents_div .agb-sheet{ border-radius:12px; }
   /* 3섹션 카드 칸 위아래 패딩: 1섹션 카드(agb-panel)와 같은 값 */
