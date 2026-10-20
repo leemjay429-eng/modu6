@@ -118,8 +118,8 @@ if(location.protocol==='file:'||location.hostname.indexOf('github.io')>-1){
 .contents_div .agb-hero-ttl--l2{ clip-path:inset(41.34% 33.81% 48.1% 33.63%); }
 .contents_div .agb-hero-ttl--l3{ clip-path:inset(52.25% 14.94% 35.42% 15%); }
 /* 움직이는 축 */
-.contents_div .agb-hero-obj--l > span{ transform-origin:10% 100%; }
-.contents_div .agb-hero-obj--rt > span{ transform-origin:85% 20%; }
+.contents_div .agb-hero-obj--l > img{ transform-origin:10% 100%; }
+.contents_div .agb-hero-obj--rt > img{ transform-origin:85% 20%; }
 .contents_div .agb-hero-ttl--banner{ transform-origin:50% 18%; }
 .contents_div .agb-hero-ttl--l1{ transform-origin:50% 34%; }
 .contents_div .agb-hero-ttl--l2{ transform-origin:50% 46%; }
@@ -163,9 +163,9 @@ if(location.protocol==='file:'||location.hostname.indexOf('github.io')>-1){
 .contents_div .agb-hero.is-in .agb-hero-ttl--l2{ animation:agb-pop .6s .92s cubic-bezier(.3,1.45,.5,1) both; }
 .contents_div .agb-hero.is-in .agb-hero-ttl--l3{ animation:agb-pop .6s 1.04s cubic-bezier(.3,1.45,.5,1) both; }
 /* 들어온 뒤 잔잔하게 계속 (안쪽 span에만 → 들어오기 움직임과 겹치지 않음) */
-.contents_div .agb-hero.is-in .agb-hero-obj--l > span{ animation:agb-sway 5.5s 1.2s ease-in-out infinite; }
-.contents_div .agb-hero.is-in .agb-hero-obj--rt > span{ animation:agb-float 4.2s 1.3s ease-in-out infinite; }
-.contents_div .agb-hero.is-in .agb-hero-obj--rb > span{ animation:agb-bob 3.6s 1.4s ease-in-out infinite; }
+.contents_div .agb-hero.is-in .agb-hero-obj--l > img{ animation:agb-sway 5.5s 1.2s ease-in-out infinite; }
+.contents_div .agb-hero.is-in .agb-hero-obj--rt > img{ animation:agb-float 4.2s 1.3s ease-in-out infinite; }
+.contents_div .agb-hero.is-in .agb-hero-obj--rb > img{ animation:agb-bob 3.6s 1.4s ease-in-out infinite; }
 
 @keyframes agb-bg-in{ from{ transform:scale(1.06); } to{ transform:scale(1); } }
 @keyframes agb-from-left{ from{ opacity:0; transform:translateX(-10%) rotate(-3deg); } to{ opacity:1; transform:none; } }
